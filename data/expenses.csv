@@ -1,1 +1,1 @@
-id,nama,kategori,tanggal,jumlah,satuan,harga_satuan,total,keterangan
+id,id_siklus,nama,kategori,tanggal,jumlah,satuan,harga_satuan,total,keterangan
