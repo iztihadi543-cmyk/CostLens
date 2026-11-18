@@ -124,3 +124,34 @@ class ExpenseManager:
                     data[j], data[j + 1] = data[j + 1], data[j]
 
         return data
+
+    def filter_pengeluaran(self, **filters):
+        """
+        Menyaring data pengeluaran berdasarkan beberapa kriteria.
+        """
+
+        hasil = []
+
+        for pengeluaran in self.data:
+            cocok = True
+
+            if "kategori" in filters:
+                if pengeluaran["kategori"].lower() != filters["kategori"].lower():
+                    cocok = False
+
+            if "id_siklus" in filters:
+                if pengeluaran["id_siklus"] != filters["id_siklus"]:
+                    cocok = False
+
+            if "min_total" in filters:
+                if float(pengeluaran["total"]) < float(filters["min_total"]):
+                    cocok = False
+
+            if "max_total" in filters:
+                if float(pengeluaran["total"]) > float(filters["max_total"]):
+                    cocok = False
+
+            if cocok:
+                hasil.append(pengeluaran)
+
+        return hasil
