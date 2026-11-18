@@ -99,20 +99,21 @@ class ExpenseManager:
 
     def urutkan_pengeluaran(self, berdasarkan, urutan="asc"):
         """
-        Mengurutkan data pengeluaran menggunakan algoritma Bubble Sort.
+        Mengurutkan data menggunakan Bubble Sort dan lambda.
         """
 
         data = self.data.copy()
 
+        if berdasarkan == "total":
+            kunci = lambda item: float(item[berdasarkan])
+        else:
+            kunci = lambda item: item[berdasarkan].lower()
+
         for i in range(len(data)):
             for j in range(0, len(data) - i - 1):
 
-                if berdasarkan == "total":
-                    nilai_1 = float(data[j][berdasarkan])
-                    nilai_2 = float(data[j + 1][berdasarkan])
-                else:
-                    nilai_1 = data[j][berdasarkan].lower()
-                    nilai_2 = data[j + 1][berdasarkan].lower()
+                nilai_1 = kunci(data[j])
+                nilai_2 = kunci(data[j + 1])
 
                 if urutan == "asc":
                     kondisi = nilai_1 > nilai_2
