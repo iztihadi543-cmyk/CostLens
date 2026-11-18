@@ -77,3 +77,22 @@ class ExpenseManager:
         """
 
         return self.data
+
+    def cari_pengeluaran(self, keyword):
+        """
+        Mencari pengeluaran berdasarkan ID, nama, atau kategori
+        menggunakan algoritma Linear Search.
+        """
+
+        hasil = []
+
+        keyword = keyword.lower()
+
+        for pengeluaran in self.data:
+            if (keyword in pengeluaran["id"].lower()
+                or keyword in pengeluaran["nama"].lower()
+                or keyword in pengeluaran["kategori"].lower()):
+
+                hasil.append(pengeluaran)
+
+        return hasil
