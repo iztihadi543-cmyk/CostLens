@@ -1,25 +1,16 @@
-from storage.file_handler import read_csv, write_csv
+from services.expense_manager import ExpenseManager
 
-# Menguji pembacaan data kolam
-data_kolam = read_csv("ponds.csv")
-print("Data kolam:", data_kolam)
+manager = ExpenseManager()
 
-# Menguji penyimpanan data kolam
-kolom = ["id_kolam", "nama_kolam", "luas", "kapasitas", "keterangan"]
+data = manager.tampilkan_pengeluaran()
 
-data_baru = [
-    {
-        "id_kolam": "KLM001",
-        "nama_kolam": "Kolam A",
-        "luas": "12",
-        "kapasitas": "1000",
-        "keterangan": "Kolam terpal"
-    }
-]
+print("DAFTAR PENGELUARAN COSTLENS")
+print("===========================")
 
-hasil = write_csv("ponds.csv", kolom, data_baru)
-print("Penyimpanan berhasil:", hasil)
-
-# Membaca kembali data yang sudah disimpan
-data_kolam = read_csv("ponds.csv")
-print("Data setelah disimpan:", data_kolam)
+for pengeluaran in data:
+    print("ID:", pengeluaran["id"])
+    print("Nama:", pengeluaran["nama"])
+    print("Kategori:", pengeluaran["kategori"])
+    print("Tanggal:", pengeluaran["tanggal"])
+    print("Total:", pengeluaran["total"])
+    print("---------------------------")
